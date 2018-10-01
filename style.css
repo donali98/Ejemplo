@@ -1,0 +1,187 @@
+/* Css Variables */
+:root{
+    --primary:#ddd;
+    --dark:#333;
+    --light:#fff;
+    --shadow: 0 1px 5px rgba(104,104,104,0.8);
+}
+html{
+    /* Defininendo que todas las cosas tendran la medida indicada */
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    /* Usando la variable */
+    color:var(--dark);
+}
+body{
+    background:#ccc;
+    margin: 30px 50px;
+    line-height: 1.4;
+}
+.btn{
+    background: var(--dark);
+    color: var(--light);
+    /* rem es 'n' veces el size de la fuente del elemento html */
+    padding: 0.6rem 1.3rem;
+    /* Quitando la linea del link */
+    text-decoration: none;
+    border: 0;
+}
+img{
+    /*Haciendo que las imagenes solo puedan ser tan anchas
+      comom su contenedor padre   
+    */
+    max-width: 100%;
+}
+
+.wrapper{
+    display: grid;
+    /*Definiendo el espacio entre elementos*/
+    grid-gap: 20px;
+}
+/* Navigation */
+.main-nav ul{
+    display: grid;
+    grid-gap: 20px;
+    padding: 0;
+    /*Quitando los puntos al inicio de cada elemento de la lista*/
+    list-style: none;
+    /* grid-template-columns: 1fr, 1fr, 1fr,1fr; */
+    /* Hace lo mismo que lo comentado arriba */
+    grid-template-columns: repeat(4,1fr);
+}
+
+.main-nav a{
+    background: var(--primary);
+    display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color:var(--dark);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+}
+.main-nav a:hover{
+    background: var(--dark);
+    color: var(--light);
+}
+
+/* Top Container  */
+.top-container{
+    display: grid;
+    grid-gap: 20px;
+    /*Haciendo que .showcase ocupe 4 espacios (dos rows) y .top-box-a/b ocupe dos en una fila*/
+    grid-template-areas: 
+    'showcase showcase top-box-a'
+    'showcase showcase top-box-b'
+}
+
+/*Asignando cada elemento de la plantilla*/
+.showcase{
+    grid-area: showcase;
+    min-height: 400px;
+    
+    /*Imagen de fondo*/
+    background: url(./img/showcase.jpg);
+    background-size: cover;
+    background-position: center;
+
+    padding: 3rem;
+
+    /*Alinieando los elementos dentro de este contenedor con flexbox*/
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+.showcase h1{
+    font-size: 4rem;
+    margin-bottom: 0;
+    color: var(--light);
+}
+.showcase p{
+    font-size: 1.3rem;
+    margin-top: 0;
+    color:var(--light);
+}
+
+.top-box{
+    background: var(--primary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    box-shadow: var(--shadow);
+    padding:1.5rem;
+}
+
+.top-box .price{
+    font-size: 2.5rem;
+}
+
+.top-box-a{
+    grid-area: top-box-a;
+}
+
+.top-box-b{
+    grid-area: top-box-b;
+}
+
+/*Boxes*/
+.boxes{
+    display: grid;
+    grid-gap:20px; 
+    /* Haciendo responsivas las cajas sin necesidad de definir la cantidad de elementos en el template */
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+}
+.box{
+    background: var(--primary);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow);
+ }
+
+/*Info*/
+.info{
+    background: var(--primary);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2,1fr);
+    padding: 3rem;
+}
+/*Portfolio*/
+.portfolio{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+
+}
+.portfolio img{
+    width: 100%;
+    box-shadow: var(--shadow);
+}
+footer{
+    margin-top:2rem;
+    background: var(--dark);
+    color:var(--light);
+    text-align: center;
+    padding:1rem;
+}
+/* Media Queries */
+
+/*Para cuando la pantalla sea <=700px de ancho*/
+@media(max-width: 700px){
+    .top-container{
+        grid-template-areas: 
+        'showcase showcase'
+        'top-box-a top-box-b';
+    }
+    .showcase h1{
+        font-size: 2.5rem;
+    }
+    .main-nav ul{
+        grid-template-columns: 1fr;
+    }   
+    
+}
